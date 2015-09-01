@@ -1,0 +1,28 @@
+{
+  "name": "onename-node",
+  "version": "1.0.0",
+  "description": "onename API node JS library",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onenameio/onename-node.git"
+  },
+  "keywords": [
+    "onename",
+    "api",
+    "node",
+    "js",
+    "blockchain",
+    "id",
+    "bitcoin"
+  ],
+  "author": "Halfmoon Labs, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onenameio/onename-node/issues"
+  },
+  "homepage": "https://github.com/onenameio/onename-node#readme"
+}
