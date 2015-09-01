@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/onenameio/onename-node/issues"
   },
-  "homepage": "https://github.com/onenameio/onename-node#readme"
+  "homepage": "https://github.com/onenameio/onename-node#readme",
+  "dependencies": {
+    "request": "^2.61.0"
+  }
 }
