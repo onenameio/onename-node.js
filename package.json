@@ -1,5 +1,5 @@
 {
-  "name": "onename-node",
+  "name": "onename-api",
   "version": "1.0.0",
   "description": "onename API node JS library",
   "main": "index.js",
