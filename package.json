@@ -1,6 +1,6 @@
 {
   "name": "onename-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "onename API node JS library",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,9 @@
   "homepage": "https://github.com/onenameio/onename-node#readme",
   "dependencies": {
     "hasprop": "0.0.3",
-    "request": "^2.61.0",
+    "request": "^2.61.0"
+  },
+  "devDependencies": {
     "tape": "^4.2.0"
   }
 }
