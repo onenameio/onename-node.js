@@ -1,4 +1,7 @@
-var request = require('request')
+'use strict'
+
+var request = require('request'),
+    hasprop = require('hasprop')
 
 function OnenameClient(appID, appSecret) {
     this.appID = appID
@@ -7,8 +10,8 @@ function OnenameClient(appID, appSecret) {
 }
 
 OnenameClient.prototype.authHeader = function() {
-    var credentialsBuffer = new Buffer(this.appID + ":" + this.appSecret),
-        authorizationHeader = "Basic " + credentialsBuffer.toString("base64")
+    var credentialsBuffer = new Buffer(this.appID + ':' + this.appSecret),
+        authorizationHeader = 'Basic ' + credentialsBuffer.toString('base64')
     return authorizationHeader
 }
 
@@ -19,7 +22,15 @@ OnenameClient.prototype.getRequest = function(url, callback) {
     }, function(error, response, body) {
         if (error) {
             callback(error)
+        } else if (response.statusCode !== 200) {
+            body = JSON.parse(body)
+            if (hasprop(body, 'error')) {
+                callback(body.error)
+            } else {
+                callback('unknown error with status code: ' + response.statusCode)
+            }
         } else {
+            body = JSON.parse(body)
             callback(null, body)
         }
     })
@@ -34,7 +45,15 @@ OnenameClient.prototype.postRequest = function(url, payload, callback) {
     }, function(error, response, body) {
         if (error) {
             callback(error)
+        } else if (response.statusCode !== 200) {
+            body = JSON.parse(body)
+            if (hasprop(body, 'error')) {
+                callback(body.error)
+            } else {
+                callback('unknown error with status code: ' + response.statusCode)
+            }
         } else {
+            body = JSON.parse(body)
             callback(null, body)
         }
     })
@@ -87,4 +106,6 @@ OnenameClient.prototype.getUserStats = function(callback) {
     this.getRequest(url, callback)
 }
 
-module.exports = OnenameClient
+module.exports = {
+    OnenameClient: OnenameClient
+}
