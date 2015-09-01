@@ -10,26 +10,34 @@ var onenameAppID = process.env.ONENAME_APP_ID,
     onenameClient = new OnenameClient(onenameAppID, onenameAppSecret)
 
 test('testGetUsers', function(t) {
-    t.plan(2)
+    t.plan(3)
 
-    var usernames = ['albertwenger']
+    var usernames = ['fredwilson'],
+        referenceName = 'Fred Wilson'
 
     onenameClient.getUsers(usernames, function(err, users) {
         t.ok(users)
 
-        var profile = null
+        var profile = null,
+            name = null
         if (hasprop(users, usernames[0] + '.profile')) {
             profile = users[usernames[0]].profile
         }
+        if (hasprop(profile, 'name.formatted')) {
+            name = profile.name.formatted
+        }
+
         t.ok(profile)
+        t.equal(name, referenceName)
     })
 
 })
 
 test('testGetDKIMInfo', function(t) {
-    t.plan(2)
+    t.plan(3)
 
-    var domain = 'onename.com'
+    var domain = 'onename.com',
+        samplePublicKey = '027d28f9951ce46538951e3697c62588a87f1f1f295de4a14fdd4c780fc52cfe69'
 
     onenameClient.getDKIMInfo(domain, function(err, data) {
         t.ok(data)
@@ -39,5 +47,6 @@ test('testGetDKIMInfo', function(t) {
             publicKey = data.public_key
         }
         t.ok(publicKey)
+        t.equal(publicKey, samplePublicKey)
     })
 })
